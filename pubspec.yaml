@@ -1,0 +1,6 @@
+name: sitemap
+description: Sitemap generation made simpler.
+version: 0.5.1
+dependencies:
+  intl: ">=0.5.1"
+  xml: ">=0.9.3"
