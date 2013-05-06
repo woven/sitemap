@@ -7,6 +7,7 @@
     <file path="$PROJECT_DIR$/../woven/pubspec.yaml" changelist="517fff12-944d-4f45-aa65-69dd66e44f26" time="1367850141414" ignored="false" />
     <file path="/pubspec.yaml" changelist="517fff12-944d-4f45-aa65-69dd66e44f26" time="1367850387928" ignored="false" />
     <file path="/README.md" changelist="517fff12-944d-4f45-aa65-69dd66e44f26" time="1367850366954" ignored="false" />
+    <file path="/Dummy.txt" changelist="517fff12-944d-4f45-aa65-69dd66e44f26" time="1367850436865" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/LICENSE" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
       </list>
     </option>
@@ -210,9 +212,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="460" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.1017964">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="14" selection-start="74" selection-end="74" vertical-scroll-proportion="0.03349754">
+        <state line="4" column="42" selection-start="162" selection-end="162" vertical-scroll-proportion="0.06699508">
           <folding />
         </state>
       </provider>

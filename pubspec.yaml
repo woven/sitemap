@@ -1,6 +1,8 @@
 name: sitemap
 description: Sitemap generation made simpler.
 version: 0.5.1
+author: Kai Sellgren <kaisellgren@gmail.com>
+homepage: https://github.com/woven/sitemap
 dependencies:
   intl: ">=0.5.1"
   xml: ">=0.9.3"
