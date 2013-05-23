@@ -12,7 +12,7 @@ class Sitemap {
   List<SitemapEntry> entries = [];
 
   String generate() {
-    var dateFormatter = new DateFormat('yyyy-mm-dd');
+    var dateFormatter = new DateFormat('yyyy-MM-dd');
 
     var root = new XmlElement('urlset');
     root.attributes['xmlns'] = 'http://www.sitemaps.org/schemas/sitemap/0.9';
