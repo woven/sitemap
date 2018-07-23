@@ -1,8 +1,14 @@
 name: sitemap
 description: Sitemap generation made simpler.
-version: 0.5.2
-author: Kai Sellgren <kaisellgren@gmail.com>
-homepage: https://github.com/woven/sitemap
+version: 0.6.0
+authors:
+- Kai Sellgren <kaisellgren@gmail.com>
+- Jimmy Forrester-Fellowes <jimmyff@jimmyff.uk>
+homepage: https://pub.dartlang.org/packages/sitemap
+
+environment:
+  sdk: '>=1.24.0 <3.0.0'
+
 dependencies:
-  intl: ">=0.5.1"
-  xml: ">=0.9.3"
+  intl: '^0.15.0'
+  xml: ^3.0.0

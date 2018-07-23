@@ -1,15 +1,13 @@
-###Sitemap
+# Sitemap
 
 Generate Sitemaps easily:
 
 ```dart
-var sitemap = new Sitemap();
+  final sitemap = new Sitemap();
 
-var entry = new SitemapEntry()
-  ..location = 'http://foo.bar/baz'
-  ..priority = 0.75;
+  sitemap.entries.add(new SitemapEntry()
+    ..location = 'http://foo.bar/baz'
+    ..priority = 0.75);
 
-sitemap.entries.add(entry);
-
-print(sitemap.generate());
+  print(sitemap.generate());
 ```

@@ -3,43 +3,44 @@ library sitemap;
 import 'package:intl/intl.dart';
 import 'package:xml/xml.dart';
 
-/**
- * Represents an entire Sitemap file.
- */
+/// Represents an entire Sitemap file.
 class Sitemap {
   String stylesheetPath;
 
   List<SitemapEntry> entries = [];
 
   String generate() {
-    var dateFormatter = new DateFormat('yyyy-MM-dd');
+    final dateFormatter = new DateFormat('yyyy-MM-dd');
 
-    var root = new XmlElement('urlset');
-    root.attributes['xmlns'] = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+    final root = new XmlElement(new XmlName('urlset'), [
+      new XmlAttribute(
+          new XmlName('xmlns'), 'http://www.sitemaps.org/schemas/sitemap/0.9')
+    ]);
 
-    entries.forEach((entry) {
-      var url = new XmlElement('url');
+    for (final entry in entries) {
+      final url = new XmlElement(new XmlName('url'));
 
-      var location = new XmlElement('loc');
-      location.addChild(new XmlText(entry.location));
-      url.addChild(location);
+      final location = new XmlElement(new XmlName('loc'));
+      location.children.add(new XmlText(entry.location));
+      url.children.add(location);
 
-      var lastMod = new XmlElement('lastmod');
-      lastMod.addChild(new XmlText(dateFormatter.format(entry.lastModified)));
-      url.addChild(lastMod);
+      final lastMod = new XmlElement(new XmlName('lastmod'));
+      lastMod.children
+          .add(new XmlText(dateFormatter.format(entry.lastModified)));
+      url.children.add(lastMod);
 
-      var changeFrequency = new XmlElement('changefreq');
-      changeFrequency.addChild(new XmlText(entry.changeFrequency));
-      url.addChild(changeFrequency);
+      final changeFrequency = new XmlElement(new XmlName('changefreq'));
+      changeFrequency.children.add(new XmlText(entry.changeFrequency));
+      url.children.add(changeFrequency);
 
-      var priority = new XmlElement('priority');
-      priority.addChild(new XmlText(entry.priority.toString()));
-      url.addChild(priority);
+      final priority = new XmlElement(new XmlName('priority'));
+      priority.children.add(new XmlText(entry.priority.toString()));
+      url.children.add(priority);
 
-      root.addChild(url);
-    });
+      root.children.add(url);
+    }
 
-    var stylesheet = '';
+    String stylesheet = '';
     if (stylesheetPath != null) {
       stylesheet = '<?xml-stylesheet type="text/xsl" href="$stylesheetPath"?>';
     }
@@ -48,9 +49,7 @@ class Sitemap {
   }
 }
 
-/**
- * Represents a single Sitemap entry.
- */
+/// Represents a single Sitemap entry.
 class SitemapEntry {
   String location = '';
   DateTime lastModified = new DateTime.now();
