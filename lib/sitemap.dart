@@ -3,43 +3,57 @@ library sitemap;
 import 'package:intl/intl.dart';
 import 'package:xml/xml.dart';
 
-/**
- * Represents an entire Sitemap file.
- */
+/// Represents an entire Sitemap file.
 class Sitemap {
   String stylesheetPath;
 
   List<SitemapEntry> entries = [];
 
   String generate() {
-    var dateFormatter = new DateFormat('yyyy-MM-dd');
+    final dateFormatter = new DateFormat('yyyy-MM-dd');
 
-    var root = new XmlElement('urlset');
-    root.attributes['xmlns'] = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+    final root = new XmlElement(new XmlName('urlset'), [
+      new XmlAttribute(
+          new XmlName('xmlns'), 'http://www.sitemaps.org/schemas/sitemap/0.9'),
+      new XmlAttribute(
+          new XmlName('xmlns:xhtml'), 'http://www.w3.org/1999/xhtml')
+    ]);
 
-    entries.forEach((entry) {
-      var url = new XmlElement('url');
+    for (final entry in entries) {
+      final url = new XmlElement(new XmlName('url'));
 
-      var location = new XmlElement('loc');
-      location.addChild(new XmlText(entry.location));
-      url.addChild(location);
+      final location = new XmlElement(new XmlName('loc'));
+      location.children.add(new XmlText(entry.location));
+      url.children.add(location);
 
-      var lastMod = new XmlElement('lastmod');
-      lastMod.addChild(new XmlText(dateFormatter.format(entry.lastModified)));
-      url.addChild(lastMod);
+      url.children.addAll(entry.alternates
+          .map<String, XmlNode>((String language, String location) =>
+              new MapEntry<String, XmlNode>(
+                  language,
+                  new XmlElement(new XmlName('xhtml:link'), [
+                    new XmlAttribute(new XmlName('rel'), 'alternate'),
+                    new XmlAttribute(new XmlName('hreflang'), language),
+                    new XmlAttribute(new XmlName('href'), location)
+                  ])))
+          .values);
 
-      var changeFrequency = new XmlElement('changefreq');
-      changeFrequency.addChild(new XmlText(entry.changeFrequency));
-      url.addChild(changeFrequency);
+      final lastMod = new XmlElement(new XmlName('lastmod'));
+      lastMod.children
+          .add(new XmlText(dateFormatter.format(entry.lastModified)));
+      url.children.add(lastMod);
 
-      var priority = new XmlElement('priority');
-      priority.addChild(new XmlText(entry.priority.toString()));
-      url.addChild(priority);
+      final changeFrequency = new XmlElement(new XmlName('changefreq'));
+      changeFrequency.children.add(new XmlText(entry.changeFrequency));
+      url.children.add(changeFrequency);
 
-      root.addChild(url);
-    });
+      final priority = new XmlElement(new XmlName('priority'));
+      priority.children.add(new XmlText(entry.priority.toString()));
+      url.children.add(priority);
 
-    var stylesheet = '';
+      root.children.add(url);
+    }
+
+    String stylesheet = '';
     if (stylesheetPath != null) {
       stylesheet = '<?xml-stylesheet type="text/xsl" href="$stylesheetPath"?>';
     }
@@ -48,12 +62,14 @@ class Sitemap {
   }
 }
 
-/**
- * Represents a single Sitemap entry.
- */
+/// Represents a single Sitemap entry.
 class SitemapEntry {
   String location = '';
   DateTime lastModified = new DateTime.now();
   String changeFrequency = 'yearly';
   num priority = 0.5;
+  final Map<String, String> _alternates = {};
+  Map<String, String> get alternates => _alternates;
+  void addAlternate(String language, String location) =>
+      _alternates[language] = location;
 }

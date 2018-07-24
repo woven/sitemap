@@ -1,15 +1,19 @@
-###Sitemap
+# Sitemap
 
-Generate Sitemaps easily:
+A dart package to generate Sitemaps easily. [View on pub](https://pub.dartlang.org/packages/sitemap)
+
+## Example
 
 ```dart
-var sitemap = new Sitemap();
+  final sitemap = new Sitemap();
 
-var entry = new SitemapEntry()
-  ..location = 'http://foo.bar/baz'
-  ..priority = 0.75;
+  sitemap.entries.add(new SitemapEntry()
+    ..location = 'http://foo.bar/baz'
+    ..priority = 0.75
+    ..addAlternate('en', 'http://foo.bar/baz')
+    ..addAlternate('fr', 'http://foo.bar/fr/baz')
+    ..addAlternate('de', 'http://de.foo.bar/baz')
+    ..addAlternate('pt-Br', 'http://brazilianfoo.bar/baz'));
 
-sitemap.entries.add(entry);
-
-print(sitemap.generate());
+  print(sitemap.generate());
 ```
