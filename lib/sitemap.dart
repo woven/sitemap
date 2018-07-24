@@ -14,7 +14,9 @@ class Sitemap {
 
     final root = new XmlElement(new XmlName('urlset'), [
       new XmlAttribute(
-          new XmlName('xmlns'), 'http://www.sitemaps.org/schemas/sitemap/0.9')
+          new XmlName('xmlns'), 'http://www.sitemaps.org/schemas/sitemap/0.9'),
+      new XmlAttribute(
+          new XmlName('xmlns:xhtml'), 'http://www.w3.org/1999/xhtml')
     ]);
 
     for (final entry in entries) {
@@ -23,6 +25,17 @@ class Sitemap {
       final location = new XmlElement(new XmlName('loc'));
       location.children.add(new XmlText(entry.location));
       url.children.add(location);
+
+      url.children.addAll(entry.alternates
+          .map<String, XmlNode>((String language, String location) =>
+              new MapEntry<String, XmlNode>(
+                  language,
+                  new XmlElement(new XmlName('xhtml:link'), [
+                    new XmlAttribute(new XmlName('rel'), 'alternate'),
+                    new XmlAttribute(new XmlName('hreflang'), language),
+                    new XmlAttribute(new XmlName('href'), location)
+                  ])))
+          .values);
 
       final lastMod = new XmlElement(new XmlName('lastmod'));
       lastMod.children
@@ -55,4 +68,8 @@ class SitemapEntry {
   DateTime lastModified = new DateTime.now();
   String changeFrequency = 'yearly';
   num priority = 0.5;
+  final Map<String, String> _alternates = {};
+  Map<String, String> get alternates => _alternates;
+  void addAlternate(String language, String location) =>
+      _alternates[language] = location;
 }
