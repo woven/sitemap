@@ -66,7 +66,7 @@ class Sitemap {
 class SitemapEntry {
   String location = '';
   DateTime lastModified = new DateTime.now();
-  String changeFrequency = 'yearly';
+  String changeFrequency = 'monthly';
   num priority = 0.5;
   final Map<String, String> _alternates = {};
   Map<String, String> get alternates => _alternates;
