@@ -7,8 +7,8 @@ authors:
 homepage: https://github.com/woven/sitemap
 
 environment:
-  sdk: '>=2.0.0-dev.61.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  intl: '^0.15.0'
-  xml: ^3.0.0
+  intl: '^0.17.0'
+  xml: '^5.3.1'
