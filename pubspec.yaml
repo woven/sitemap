@@ -1,14 +1,14 @@
 name: sitemap
 description: Sitemap generation made simpler.
-version: 0.7.0
+version: 1.0.0
 authors:
 - Kai Sellgren <kaisellgren@gmail.com>
 - Jimmy Forrester-Fellowes <jimmyff@jimmyff.uk>
 homepage: https://github.com/woven/sitemap
 
 environment:
-  sdk: '>=2.0.0-dev.61.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  intl: '^0.15.0'
-  xml: ^3.0.0
+  intl: ^0.17.0
+  xml: ^6.0.0

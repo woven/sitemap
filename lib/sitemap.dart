@@ -5,7 +5,7 @@ import 'package:xml/xml.dart';
 
 /// Represents an entire Sitemap file.
 class Sitemap {
-  String stylesheetPath;
+  String? stylesheetPath;
 
   List<SitemapEntry> entries = [];
 
