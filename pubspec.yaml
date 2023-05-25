@@ -1,9 +1,9 @@
 name: sitemap
 description: Sitemap generation made simpler.
 version: 1.0.0
-authors:
-  - Kai Sellgren <kaisellgren@gmail.com>
-  - Jimmy Forrester-Fellowes <jimmyff@jimmyff.uk>
+# authors:
+#   - Kai Sellgren <kaisellgren@gmail.com>
+#   - Jimmy Forrester-Fellowes <jimmyff@jimmyff.uk>
 homepage: https://github.com/woven/sitemap
 
 environment:
