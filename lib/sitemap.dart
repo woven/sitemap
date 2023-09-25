@@ -66,10 +66,16 @@ class Sitemap {
 class SitemapEntry {
   String location = '';
   DateTime lastModified = new DateTime.now();
-  String changeFrequency = 'yearly';
-  num priority = 0.5;
+  final String changeFrequency;
+  final num priority;
   final Map<String, String> _alternates = {};
   Map<String, String> get alternates => _alternates;
   void addAlternate(String language, String location) =>
       _alternates[language] = location;
+
+  SitemapEntry({
+    this.changeFrequency = 'monthly',
+    this.priority = 0.5,
+  });
+
 }
